@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact name="java练习:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/java_jar</output-path>
+    <root id="root">
+      <element id="archive" name="java练习.jar">
+        <element id="module-output" name="java练习" />
+        <element id="module-output" name="chapter3" />
+        <element id="module-output" name="chapter" />
+        <element id="module-output" name="chapter4" />
+        <element id="module-output" name="chapter5" />
+        <element id="module-output" name="chapter6" />
+        <element id="module-output" name="chapter7" />
+        <element id="module-output" name="chapter8" />
+        <element id="module-output" name="chapter9" />
+        <element id="module-output" name="chapter10" />
+      </element>
+    </root>
+  </artifact>
+</component>
