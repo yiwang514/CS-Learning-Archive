@@ -82,7 +82,7 @@ public class BankersAlgorithm {
                     break;
                 }
             }
-
+            //合法型检查：进程名必须存在且未完成
             if (pIdx == -1 || State[pIdx] == 1) {
                 System.out.println("进程名无效或已完成，请重新输入！");
                 continue;
@@ -113,6 +113,7 @@ public class BankersAlgorithm {
                 continue; // 申请异常直接回到输入进程名
             }
 
+
             // 预分配 (先假设分配成功，后续检查安全性，如果不安全则回滚)
             for (int j = 0; j < N; j++) {
                 Available[j] -= Request[pIdx][j];    // 系统可用的减少
@@ -122,9 +123,10 @@ public class BankersAlgorithm {
 
             if (checkSafe()) {
                 // 如果 Need 归零，释放资源
+                //检查该进程的 Need 是否全部为 0
                 boolean finished = true;
                 for (int j = 0; j < N; j++) if (Need[pIdx][j] != 0) finished = false;
-                
+                // 如果全部为 0，说明该进程执行完成，释放资源
                 if (finished) {
                     State[pIdx] = 1;
                     for (int j = 0; j < N; j++) {
@@ -132,8 +134,9 @@ public class BankersAlgorithm {
                         Allocation[pIdx][j] = 0;
                     }
                 }
+               //如果不全为0什么都不做，预分配已经生效了
 
-                // 判断是否全部完成
+                // 成功后判断是否全部完成，输出安全序列
                 boolean allDone = true;
                 for (int i = 0; i < M; i++) if (State[i] == 0) allDone = false;
 
@@ -164,8 +167,9 @@ public class BankersAlgorithm {
         for (int i = 0; i < N; i++) Work[i] = Available[i];
         // 使用 Finish 变量名 (0: false, 1: true)
         for (int i = 0; i < M; i++) Finish[i] = State[i]; // 已完成的设为1
+       
         // 寻找满足 Need <= Work 且 Finish == 0 的进程
-      // 统计有多少个进程还没完成，作为循环终止条件
+      // target统计有多少个进程还没完成，作为循环终止条件
         int target = 0;
         for (int i = 0; i < M; i++) if (State[i] == 0) target++;
          // 核心循环：最多需要找到 target 个进程
@@ -174,7 +178,7 @@ public class BankersAlgorithm {
             boolean found = false;  // 标记本轮是否找到了可执行的进程
             for (int i = 0; i < M; i++) {
                 if (Finish[i] == 0) {// 还没被标记为完成
-                    //检查 Need[i] 的每个分量是否都 <= Work 的对应分量
+                    //再检查 Need[i] 的每个分量是否都 <= Work 的对应分量
                     boolean canAlloc = true;
                     for (int j = 0; j < N; j++) {
                         if (Need[i][j] > Work[j]) {
@@ -182,6 +186,8 @@ public class BankersAlgorithm {
                             break;
                         }
                     }
+                    
+                    // 如果找到了一个满足条件的进程，就假装它执行完并归还资源，标记为完成
                     if (canAlloc) {
                         for (int j = 0; j < N; j++) Work[j] += Allocation[i][j];// 假装它执行完并归还了资源
                         Finish[i] = 1;
