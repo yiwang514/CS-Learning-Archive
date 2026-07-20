@@ -1,5 +1,5 @@
 CREATE Table IF NOT EXISTS student(
-   number VARCHAR(30) NOT NULL PRIMARY KEY COMMENT '学号,主键', 
+   number VARCHAR(30) NOT NULL PRIMARY KEY COMMENT '学号,主键',     --NOT NULL表示该字段不能为空，PRIMARY KEY表示该字段为主键
    name VARCHAR(30) NOT NULL COMMENT '姓名',
     sex TINYINT(1) NOT NULL COMMENT '性别,0为男,1为女,2为其他',
     age TINYINT(3) NOT NULL COMMENT '年龄',
