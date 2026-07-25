@@ -70,3 +70,40 @@ SELECT ADDDATE(NOW(),10);
 SELECT TIMESTAMPDIFF(DAY,NOW(),'2026-08-31');
 12.DATE_FORMAT(X,format); --返回日期X按照format格式化后的结果
 SELECT DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s');
+
+
+--条件判断函数
+1.IF(X,Y,Z); --如果X为true，则返回Y，否则返回Z
+SELECT IF(1>2,'鸣潮牛逼','鸣潮nb');
+2.IFNULL(X,Y); --如果X为NULL，则返回Y，否则返回X
+SELECT IFNULL(NULL,'鸣潮nb');
+
+3.CASE WHEN 条件1 THEN 结果1 [WHEN 条件2 THEN 结果2 ...]ELSE 结果N END; 
+--如果条件1满足，则使用表达式1；【如果条件2满足，则使用表达式2， ... 】否则，使用表达式n。相当
+--于Java中的多重if..else语句。
+SELECT CASE WHEN 1>2 THEN '鸣潮牛逼' ELSE '鸣潮nb' END;
+
+CASE WHEN 值1 THEN 结果1 [WHEN 值2 THEN 结果2 ...]ELSE 结果N END;
+--如果表达式的执行结果为值1，则使用表达式1；【执行结果为值2，则使用表达式2， ... 】否则，使用
+--表达式n。相当于Java中的switch语句
+
+
+
+--其他函数
+1.FORMAT(X,D); --将数字X格式化，返回数值X保留到小数点后D位的值，截断时要四舍五入，并且在整数部分每三位加一个逗号
+SELECT FORMAT(1234567.123,2);
+2.VERSION(); --返回MySQL的版本号
+SELECT VERSION();
+3.CONNECTION_ID(); --返回当前连接的ID
+SELECT CONNECTION_ID();
+4.DATABASE(); --返回当前连接的数据库名
+SELECT DATABASE();
+SCHEMA(); --返回当前连接的数据库名
+SELECT SCHEMA();
+5.USER(); SYSTEM_USER(); SESSION_USER(); --返回当前连接的用户名和主机名
+SELECT USER(); 
+SELECT SYSTEM_USER();
+SELECT SESSION_USER();
+6.CURRENT_USER(); CURRENT_USER; --返回当前连接的用户名和主机名
+SELECT CURRENT_USER();
+SELECT CURRENT_USER; 
