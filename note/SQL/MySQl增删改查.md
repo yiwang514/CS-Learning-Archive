@@ -120,3 +120,33 @@ LIMIT ...;
 必须有：每张表必须有且只有一个主键。
 用数字：尽量用无意义的、数据库自动生成的自增整数（ID）当主键，别用业务字段（姓名、手机号）。
 不要动：数据一旦写进去，天王老子来了也不能修改它的主键。
+
+
+9.  Q: 咋同一个 ALTER TABLE 语句后面，一会儿跟 ADD，一会儿跟 MODIFY。如何区分啊？
+    A：1. ADD —— 只管“生孩子”
+        只要是原来没有、现在要加的东西，一律用 ADD。
+       2.MODIFY —— MySQL 里的“整容手术”
+        当你要改变一个已有字段的类型、长度、是否为空时，MySQL 用 MODIFY COLUMN（或者直接 MODIFY）。
+      ⚠️ MODIFY 的坑：你必须把完整的列定义重新写一遍！不能只写“我要改长度”，得连类型、约束、注释一起重写。漏写了 NOT NULL，原来有的 NOT NULL 就丢了。  
+       3.CHANGE —— MySQL 特有的“改名+整容二合一”
+        如果你不仅要改字段定义，还要改字段名，MySQL 必须用 CHANGE（而且新名字和旧名字都要写）：
+       4.ALTER COLUMN ... SET DEFAULT —— 只动默认值（轻量级）
+        MySQL 里还有一种更轻量的写法，专门用来改默认值，不改类型、不加锁重建表：
+    
+        我要干什么？
+│
+├── 加新字段 / 加约束 / 加索引？
+│   └──> ALTER TABLE 表名 ADD ...
+│
+├── 改已有字段的类型 / 长度 / NOT NULL？
+│   └──> ALTER TABLE 表名 MODIFY COLUMN ...（MySQL）
+│       ALTER TABLE 表名 ALTER COLUMN ...（其他库）
+│
+├── 改字段名？
+│   └──> ALTER TABLE 表名 CHANGE 旧名 新名 类型...（MySQL）
+│
+├── 只改默认值？
+│   └──> ALTER TABLE 表名 ALTER COLUMN 字段 SET DEFAULT ...
+│
+└── 删字段 / 删约束 / 删索引？
+    └──> ALTER TABLE 表名 DROP ...
