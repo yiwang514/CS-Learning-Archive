@@ -63,3 +63,37 @@ SELECT age;
     [DELIMITER ;]
     --调用存储过程
     CALL 存储过程名(参数1，参数2...);
+
+    实例：
+    使用存储过程完成银行转账业务
+    --创建存储过程
+    CREATE PROCEDURE transfer (IN treansferFrom BIGINT,IN transferTo BIGINT.IN transferMoney BIGINT(20))
+    BEGIN
+        UPDATE account SET balance = balance - transferMoney WHERE account =  transferFrom
+        UPDATE account SET balance = balance + transferMoney WHERE account = transferTo;
+        END
+    CALL transfer(123456,123457,2000);
+    
+    如果转账账户余额不足，上面的SQL代码依然可以正常执行，只是执行完后，转账账户的余额变为了负数。这显然不符合常理。因此需要修正。
+    DROP PROCEDURE IF EXISTS `查询员工月度业绩`;
+    CREATE PROCEDURE transfer(IN transferFrom BIGINT,IN transferTo BIGINT,IN transferMoney BIGINT(20))
+    BEGIN
+        --定义变量表示执行结果：0- 失败，1-成功
+        DECLARE result TINYINT(1) DEFAULT 0;
+        --转账账户必须保证余额大于等于转账金额
+        UPDATE  account SET balance = balance - transferMoney WHERE account = transferFrom AND balance >= transferMoney;
+        --检测受影响的行数是否为1，为1表示更新成功
+        IF ROW_COUNT() =1 THEN
+        --目标账号余额增加
+        UPDATE account SET balance = balance + transferMoney WHERE account = transferTo;
+            IF ROW_COUNT() =1 THEN 
+        --更新结果为1
+            SET result =1;
+            END IF;
+        END IF;
+        --查询结果
+        SELECT result;
+    END
+
+
+
