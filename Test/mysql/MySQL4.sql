@@ -97,3 +97,94 @@ SELECT age;
 
 
 
+
+
+
+**自定义函数**
+    语法：
+    CREATEFUNCTION 函数名（参数名1 数据类型，参数名2 数据类型，...,参数名n 数据类型）
+    RETURNS 数据类型
+    --函数特征：
+    -- DETERMINISTIC：确定的
+    -- NO SQL：没有SQL语句，当然也不会修改数据
+    -- READS SQL DATA：只是读取数据，不会修改数据
+    -- MODIFIES SQL DATA：要修改数据
+    -- CONTAINS SQL：包含了SQL语句
+    DETERMINISTIC | NO SQL | READS SQL DATA | MODIFIES SQL DATA | CONTAINS SQL
+    语句块开始
+    BEGIN
+        SQL语句集
+        RETURN 结果；
+    END
+
+    示例：使用函数实现求score表中的成绩最大差值
+    CREATE FUNCTION getMaxDiff()
+    RETURNS DOUBLE（10,2）
+    DETERMINISTIC
+    BEGIN
+        RETURN(SELECT MAX(score)-MIN(score) FROM score);
+    END
+    调用函数
+    SELECT getMaxDiff();
+
+    循环结构
+    WHILE 循环条件 DO
+        SQL语句集
+    END WHILE;
+
+    REPEAT 
+    -- SQL语句集
+    UNTIL 循环条件 END REPEAT;
+    标号：LOOP
+    -- SQL语句集
+        IF 循环终止条件 THEN LEAVE 标号;
+        END IF;
+    END LOOP;
+
+--示例：使用函数实现求0~给定的任意整数的累加和
+CREATE FUNCTION getTotal(maxNum INT(11))
+RETURNS INT(11)
+NO SQL
+BEGIN
+    DECLARE i INT(11) DEFAULT 0;
+    DECLARE total INT(11) DEFAULT 0;
+    WHILE i <= maxNum DO
+        SET total = total + i;
+        SET i = i + 1;
+    END WHILE;
+    RETURN total;
+END
+
+
+
+
+
+--  触发器
+    定义：
+    DROP TRIGGER IF EXISTS 触发器名称;
+    --创建触发器-》触发时机为BEFORE或者AFTER——》触发事件，为INSERT，UPDATE或者DELETE
+    CREATE TRIGGER 触发器名称 {BEFORE|AFTER} {INSERT|UPDATE|DELETE} ON 表名 FOR EACH ROW
+    BEGIN
+        SQL语句集
+    END
+
+实例一：现有商品表goods和订单表order，每一个订单购买数量的更新都意味着商品数量的变动，请使用触发器完
+成这一过程。
+    --创建触发器
+    CREATE TRIGGER updateOrder AFTER UPDATE ON  `order` FOR EACH ROW
+    BEGIN
+        DECLARE changeNum INT(11) DEFAULT 0;
+        SET changeNum = NEW.sale_count - OLD.sale_count;
+        UPDATE goods SET number = number - changeNum WHERE goods_id = OLD.goods_id;
+    END
+
+UPDATE `order` SET sale_count = sale_count +2WHERE id=20;
+
+
+
+
+
+
+--视图 
+
+    
