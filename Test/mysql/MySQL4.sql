@@ -186,5 +186,23 @@ UPDATE `order` SET sale_count = sale_count +2WHERE id=20;
 
 
 --视图 
+    语法
+    --创建视图
+    CREATE VIEW 视图名称 AS SELECT 字段1,字段2,... FROM 表名 WHERE 条件;
+    --更新视图
+    CREATE OR REPLACE VIEW 视图名称 AS SELECT 字段1,字段2,... FROM 表名 WHERE 条件;
+    --删除视图
+    DROP VIEW IF EXISTS 视图名称;
+    实例：定制用户数据，聚焦特定的数据。例如：如果频繁获取销售人员编号、姓名和代理商名称，可以创建视图
+    CREATE OR REPLACE VIEW salesInfo AS
+    SELECT a.id,
+           a.`name` saleName,
+           b.`name` agentName
+    FROM
+        sales a,
+        agent b
+    WHERE
+        a.agent_id = b.id;
+
 
     
