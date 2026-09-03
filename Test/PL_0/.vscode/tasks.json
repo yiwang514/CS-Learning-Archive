@@ -1,0 +1,58 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "PL/0: build compiler",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Iinclude",
+        "-o",
+        "bin/pl0.exe",
+        "src/pl0.c"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "PL/0: run multiply example",
+      "type": "shell",
+      "command": "bin/pl0.exe",
+      "args": [
+        "examples/multiply.pl0"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": "PL/0: build compiler",
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "PL/0: run current file",
+      "type": "shell",
+      "command": "bin/pl0.exe",
+      "args": [
+        "${file}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": "PL/0: build compiler",
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    }
+  ]
+}
+

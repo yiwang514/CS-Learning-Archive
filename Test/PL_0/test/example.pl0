@@ -1,0 +1,12 @@
+const limit = 6;
+var i, total;
+begin
+    total := 0;
+    i := 1;
+    while i <= limit do
+    begin
+        total := total + i;
+        i := i + 1
+    end
+end.
+
