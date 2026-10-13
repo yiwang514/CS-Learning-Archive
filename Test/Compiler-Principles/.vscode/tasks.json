@@ -1,0 +1,312 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "课程：编译全部实验",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "build.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "课程：验证全部实验",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "verify.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "PL/0 编译系统：编译",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "pl0-compiler/c/build.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "PL/0 编译系统：运行示例",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "pl0-compiler/c/run.cmd",
+        "pl0-compiler/c/examples/multiply.pl0"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "PL/0 编译系统：验证",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "pl0-compiler/c/verify.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "PL/0 编译系统：分析当前文件",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "pl0-compiler/c/run.cmd",
+        "${file}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 C 独立版：编译",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/c/build.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 C 独立版：运行示例",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/c/run.cmd",
+        "lexical-analysis/c/tests/lex_demo.pl0"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 C 独立版：验证",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/c/verify.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 C 独立版：分析当前文件",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/c/run.cmd",
+        "${file}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 C 教材版：编译",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/c-textbook/build.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 C 教材版：运行示例",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/c-textbook/run.cmd",
+        "lexical-analysis/c-textbook/tests/read_write.pl0"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 C 教材版：验证",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/c-textbook/verify.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 C 教材版：分析当前文件",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/c-textbook/run.cmd",
+        "${file}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 Java 版：编译",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/java/build.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 Java 版：运行示例",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/java/run.cmd",
+        "lexical-analysis/java/tests/read_write.pl0"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 Java 版：验证",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/java/verify.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "词法分析 Java 版：分析当前文件",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "lexical-analysis/java/run.cmd",
+        "${file}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "NFA 转 DFA Java 版：编译",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "nfa-to-dfa/java/build.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "NFA 转 DFA Java 版：运行示例",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "nfa-to-dfa/java/run.cmd",
+        "nfa-to-dfa/java/tests/epsilon_chain.txt"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "NFA 转 DFA Java 版：验证",
+      "type": "process",
+      "command": "cmd",
+      "args": [
+        "/d",
+        "/c",
+        "nfa-to-dfa/java/verify.cmd"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

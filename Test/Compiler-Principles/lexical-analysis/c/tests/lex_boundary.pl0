@@ -1,0 +1,17 @@
+/* test case 3: mixed-case keywords and boundary-length tokens */
+CONST m = 7;
+VAR abcdefghij, y;
+PROCEDURE p;
+BEGIN
+    abcdefghij := 12345678901234;
+    IF abcdefghij <= m THEN abcdefghij := abcdefghij + 1;
+    WHILE abcdefghij >= 0 DO abcdefghij := abcdefghij - 1;
+    IF odd abcdefghij THEN abcdefghij := abcdefghij * 2;
+    y := abcdefghij / 2
+END;
+BEGIN
+    read(abcdefghij);
+    call p;
+    write(y)
+END.
+

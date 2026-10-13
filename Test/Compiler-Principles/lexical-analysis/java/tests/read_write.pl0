@@ -1,0 +1,12 @@
+var a, b;
+begin
+    read(a);
+    b := 0;
+    while a # 0 do
+    begin
+        b := b + a;
+        a := a - 1
+    end;
+    write(b)
+end.
+

@@ -1,0 +1,10 @@
+var x;
+begin
+    x := 12abc;
+    x := 123456789012345678901234;
+    x := @;
+    x : 1;
+    abcdefghijk := 1;
+    /* unterminated comment
+end.
+

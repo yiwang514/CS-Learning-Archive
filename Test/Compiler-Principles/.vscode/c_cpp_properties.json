@@ -1,0 +1,16 @@
+{
+  "configurations": [
+    {
+      "name": "Compiler Principles (MinGW)",
+      "includePath": [
+        "${workspaceFolder}/pl0-compiler/c/include",
+        "${workspaceFolder}/lexical-analysis/c-textbook/include"
+      ],
+      "defines": [],
+      "compilerPath": "gcc",
+      "cStandard": "c11",
+      "intelliSenseMode": "windows-gcc-x64"
+    }
+  ],
+  "version": 4
+}
