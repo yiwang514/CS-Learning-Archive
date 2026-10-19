@@ -25,7 +25,7 @@
 
 ## 阅读与录制
 
-- [逐函数代码讲解](docs/Pl0Lexer代码讲解.md)：每个函数的作用、调用关系、if/while 条件及原因。
+- [实验一 Java 版代码讲解](docs/Pl0Lexer代码讲解.md)：2026-10-19 重写，从脚本参数和文件读取讲起，逐步跟踪 Token 识别，附全部方法、判断条件及自测题。
 - [视频口播稿](docs/讲解视频口播稿.md)：录制准备、演示顺序、讲解和结束语。
 
 推荐阅读顺序：`main → run → getch → getsym → 各类 read 方法 → recordCurrentToken → printTokens`。
